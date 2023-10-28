@@ -4,6 +4,11 @@ out = "out"
 libs = ["lib"]
 solc = "0.8.21"
 
-
 chain_id = 5
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+remappings = ["@openzeppelin/=lib/openzeppelin-contracts/" ,"@chainlink/=lib/chainlink/", "@openzeppelin-upgradeable/=lib/openzeppelin-contracts-upgradeable/", "@chiruLabs/=lib/ERC721A-Upgradeable"]
+
+[rpc_endpoints]
+goerli = "PlaceYourRpc"
+
+[etherscan]
+goerli = { key = "${GOERLI_KEY}" }
