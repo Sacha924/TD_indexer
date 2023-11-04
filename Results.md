@@ -1,4 +1,4 @@
-This repository contains a series of Ethereum smart contracts designed for an evaluation process. Each contract serves a particular exercise outlined in the evaluation.
+This repository contains a series of functions designed for an evaluation process. Each function serves a particular exercise outlined in the evaluation.
 
 ## Contracts
 
