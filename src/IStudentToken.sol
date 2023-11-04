@@ -6,5 +6,8 @@ import {IERC20} from  "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 interface IStudentToken is IERC20 {
 	function createLiquidityPool() external;
 
-	function SwapRewardToken() external;
+	function SwapRewardToken(
+        uint256 amountOut,
+        uint256 amountInMaximum
+    ) external returns (uint256 amountIn);
 }
