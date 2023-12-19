@@ -8,4 +8,8 @@ contract StableCoin is ERC20 {
         _mint(msg.sender, initialSupply/2);
         _mint(address(this), initialSupply/2);
     }
+
+    function receiveToken(uint256 _amount) public {
+        _mint(msg.sender, _amount*10**18);
+    }
 }
