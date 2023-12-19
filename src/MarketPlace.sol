@@ -15,26 +15,20 @@ contract MarketPlace {
         priceFeed = AggregatorV3Interface(_priceFeed);
     }
 
-    function getLatestPrice() public view returns (int) {
-        (
-            /*uint80 roundID*/,
-            int price,
-            /*uint startedAt*/,
-            /*uint timeStamp*/,
-            /*uint80 answeredInRound*/
-        ) = priceFeed.latestRoundData();
-        return price;
+    function getLatestPrice(uint256 _amount) public view returns (uint256) {
+        (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound) = priceFeed.latestRoundData();
+        return (_amount*uint(answer))/(10**8);
     }
 
-    function buyAssetToken(uint256 stablecoinAmount) public {
-        int rawPrice = getLatestPrice();
-        require(rawPrice > 0, "Invalid price data");
+    function swap(uint256 _amount) public{
+        require(stablecoin.allowance(msg.sender, address(this)) >= uint(_amount), "stablecoin Allowance too low");
 
-        uint256 adjustedPrice = uint256(rawPrice) / 1e8; // Adjust for price feed decimals
-        uint256 assetTokenAmount = (stablecoinAmount * 1e18) / adjustedPrice;
+        uint256 latestPrice = getLatestPrice(_amount);
+        uint256 adjustedPrice = latestPrice * 1e18;
 
-        require(stablecoin.transferFrom(msg.sender, address(this), stablecoinAmount), "Transfer failed");
-        require(assetToken.transfer(msg.sender, assetTokenAmount), "Transfer failed");
+        require(assetToken.balanceOf(address(this)) >= uint(adjustedPrice), "Not enough balance in the contract");
+        stablecoin.transferFrom(msg.sender, address(this), _amount*10**18);
+        assetToken.transfer(msg.sender, adjustedPrice);
     }
 
 }

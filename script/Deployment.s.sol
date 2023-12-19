@@ -12,8 +12,8 @@ contract DeploymentScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         AssetToken ass = new AssetToken(100000 * (10**18));
-        StableCoin sta = new StableCoin(500 * (10**18));
-        new MarketPlace(address(ass), address(sta), 0x48731cF7e84dc94C5f84577882c14Be11a5B7456); // Link - usd
+        StableCoin sta = new StableCoin(100000 * (10**18));
+        new MarketPlace(address(sta), address(ass), 0x48731cF7e84dc94C5f84577882c14Be11a5B7456); // Link - usd
 
         vm.stopBroadcast();
     }
