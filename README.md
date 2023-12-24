@@ -7,7 +7,14 @@ The Chainlink price feed is utilized in this project to provide a reliable and s
 The accompanying React application is intentionally kept basic with a single file and inline CSS styling to focus on showcasing the core functionality of the smart contract interactions. 
 
 
+## Part 2 (SushiSwap LP Token Dashboard)
 
+This project is a minimalistic DeFi dashboard created to interact with SushiSwap's liquidity pool (LP) tokens. It utilizes TheGraph's subgraph for SushiSwap to fetch and display data about liquidity provider positions.
+
+Like before, I intentionally kept basic with a single file and inline CSS styling.
+
+Result :
+<img src="1.JPG"/>
 ## Helpful info
 
 forge install smartcontractkit/chainlink-brownie-contracts
